@@ -1,0 +1,81 @@
+<h2>
+  User Information!
+</h2>
+<div class="card">
+  <div class="card-body">
+      <form [formGroup]="addUserInputForm" novalidate>
+          <div class="form-group">
+            <label class="col-md-4">Username</label>
+            <input type="text" class="form-control" formControlName="username" #username />
+          </div>
+          <div *ngIf="addUserInputForm.controls['username'].invalid && (addUserInputForm.controls['username'].dirty || addUserInputForm.controls['username'].touched)" class="alert alert-danger">
+            <div *ngIf="addUserInputForm.controls['username'].errors.required">
+              User Name is required.
+            </div>
+            <div *ngIf="addUserInputForm.controls['username'].errors.pattern">
+              Invalid Username. Username should have both letters and numbers, without special characters
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-4">Password </label>
+            <input type="password" class="form-control" formControlName="password" #password />
+          </div>
+          <div *ngIf="addUserInputForm.controls['password'].invalid && (addUserInputForm.controls['password'].dirty || addUserInputForm.controls['password'].touched)" class="alert alert-danger">
+            <div *ngIf="addUserInputForm.controls['password'].errors.required">
+              Password is required.
+            </div>
+            <div *ngIf="addUserInputForm.controls['password'].errors.pattern">
+              Invalid Password. Password should contain lowercaseLetter, uppercaseLetter and number
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-4">First name </label>
+            <input type="text" class="form-control" formControlName="firstname" #firstname />
+          </div>
+          <div *ngIf="addUserInputForm.controls['firstname'].invalid && (addUserInputForm.controls['firstname'].dirty || addUserInputForm.controls['firstname'].touched)" class="alert alert-danger">
+            <div *ngIf="addUserInputForm.controls['firstname'].errors.required">
+              First name is required.
+            </div>
+            <div *ngIf="addUserInputForm.controls['firstname'].errors.pattern">
+              Invalid Firstname. Firstname should have letters
+            </div>
+          </div>
+
+          <div class="form-group">
+              <label class="col-md-4">Last name </label>
+              <input type="text" class="form-control" formControlName="lastname" #lastname />
+            </div>
+            <div *ngIf="addUserInputForm.controls['lastname'].invalid && (addUserInputForm.controls['lastname'].dirty || addUserInputForm.controls['lastname'].touched)" class="alert alert-danger">
+              <div *ngIf="addUserInputForm.controls['lastname'].errors.required">
+                Last name is required.
+              </div>
+              <div *ngIf="addUserInputForm.controls['lastname'].errors.pattern">
+                Invalid Lastname. Lastname should have letters
+              </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4">Email </label>
+                <input type="text" class="form-control" formControlName="gmail" #gmail/>
+              </div>
+              <div *ngIf="addUserInputForm.controls['gmail'].invalid && (addUserInputForm.controls['gmail'].dirty || addUserInputForm.controls['gmail'].touched)" class="alert alert-danger">
+                <div *ngIf="addUserInputForm.controls['gmail'].errors.required">
+                  Email is required.
+                </div>
+                <div *ngIf="addUserInputForm.controls['gmail'].errors.pattern">
+                  Invalid Email. Email should be like 'letters@address'
+                </div>
+              </div>
+
+              <div class="form-group">
+                <button (click)="addUserItem(username.value, password.value, firstname.value, lastname.value, gmail.value)"
+                    [disabled]="addUserInputForm.pristine || addUserInputForm.invalid" 
+                    class="btn btn-success">
+                    Add User
+                 </button>
+            </div>
+        </form>
+  </div>
+</div>

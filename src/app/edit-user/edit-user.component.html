@@ -1,0 +1,39 @@
+<h2>
+  Edit User Information!
+</h2>
+<div class="card">
+  <div class="card-body">
+    <form [formGroup]="updateUserInputForm" novalidate>
+      <div class="form-group">
+        <label class="col-md-4">User Name</label>
+        <input type="text" class="form-control" formControlName="username" #username value = "{{user.username}}" />
+      </div>
+      
+      <div class="form-group">
+        <label class="col-md-4">Password</label>
+        <input type="password" class="form-control" formControlName="password" #password value= "{{user.password}}" />
+      </div>
+     
+      <div class="form-group">
+        <label class="col-md-4">Firstname </label>
+        <input type="text" class="form-control" formControlName="firstname" #firstname value = "{{user.firstname}}" />
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-4">Lastname </label>
+        <input type="text" class="form-control" formControlName="lastname" #lastname value = "{{user.lastname}}" />
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-4">Email </label>
+        <input type="text" class="form-control" formControlName="gmail" #gmail value = "{{user.gmail}}" />
+      </div>
+      
+      <div class="form-group">
+        <button (click)="updateUserItem(username.value, password.value, firstname.value, lastname.value, gmail.value)"
+        [disabled]="updateUserInputForm.invalid" 
+        class="btn btn-primary">Update User</button>
+      </div>
+    </form>
+  </div>
+</div>

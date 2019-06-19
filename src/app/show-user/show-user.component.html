@@ -1,0 +1,24 @@
+<div>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+          <th>Id</th>
+          <th>User Name</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th colspan="2">Action</th>
+      </tr>
+    </thead>
+  
+    <tbody>
+        <tr  *ngFor="let user of users; let i= index;">
+          <td>{{i+1}}</td>
+          <td>{{ user.username }}</td>
+          <td>{{ user.firstname }} {{ user.lastname }}</td>
+          <td>{{ user.gmail }}</td>
+          <td><a [routerLink]="['edit', user._id]" class="btn btn-primary">Edit</a></td>
+          <td><a (click)="deleteUserItem(user._id)" class="btn btn-danger">Delete</a></td>
+        </tr>
+    </tbody>
+  </table>
+</div>
