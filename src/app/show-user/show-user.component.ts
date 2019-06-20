@@ -17,13 +17,13 @@ export class ShowUserComponent implements OnInit {
   }
 
   users: user[];
+  userItem : user;
 
   loadData() {
     console.log('Load data from database');
     this.userService.getUsers().subscribe((data: user[]) => {
       this.users = data;
       console.log(this.users);
-      console.log(data);
   });
   }
 
@@ -34,4 +34,11 @@ export class ShowUserComponent implements OnInit {
         this.loadData();
       });
     }
+
+  open(_id){
+    this.userService.getUserById(_id).subscribe((userDetail: user) => {
+      this.userItem = userDetail;
+      console.log(this.userItem);
+  });;
+  }
 }

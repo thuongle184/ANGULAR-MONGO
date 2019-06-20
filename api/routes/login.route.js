@@ -11,7 +11,7 @@ loginRoutes.post('/login',function (req, res) {
   User.findOne({username: username}, function(err, user) {
     if (err) {
       console.log('a', err);
-      return
+      return;
     }
     if(!user){
       res.end("No account match");

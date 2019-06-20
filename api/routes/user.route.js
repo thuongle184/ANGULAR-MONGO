@@ -29,6 +29,20 @@ userRoutes.route('/').get(function (req, res) {
   });
 });
 
+
+userRoutes.route('/read/:id').get(function (req, res) {
+  let id = req.params.id;
+  User.findById(id, function (err, user){
+    console.log(user);
+    if(err){
+      console.log(err);
+    }
+    else {
+      res.json(user);
+    }
+  });
+});
+
 userRoutes.route('/delete/:id').get(function (req, res) {
   User.findByIdAndRemove({_id: req.params.id}, function(err, user){
       if(err) res.json(err);

@@ -12,12 +12,14 @@ import { LoginService } from '../_services/login.service';
 export class LoginComponent implements OnInit {
 
   constructor(private router: Router, private loginService: LoginService){
-
   }
 
   error = '';
 
   ngOnInit() {
+    if(this.loginService.isLogged){
+      
+    }
   }
 
   formGroupUserInput = new FormGroup({ //variables name: the same as in array
@@ -29,11 +31,12 @@ export class LoginComponent implements OnInit {
 
   checkLogin() {
     console.log(this.formGroupUserInput.value);
-    if (this.loginService.login(this.formGroupUserInput.value.username, this.formGroupUserInput.value.password) ) {
-      console.log(this.loginService.login(this.formGroupUserInput.value.username, this.formGroupUserInput.value.password));
-        this.router.navigate(['user']);
+    if (!this.loginService.login(this.formGroupUserInput.value.username, this.formGroupUserInput.value.password)) {
+      
+      alert ('Email or password is incorrect');
     } else {     
-       alert ('Email or password is incorrect');
+      this.router.navigate(['user']);
+      
     }
   }
   

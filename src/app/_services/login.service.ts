@@ -26,13 +26,13 @@ export class LoginService {
   
   
   isLogged(message: boolean): boolean {
+    console.log(message);
     return this._isLoggedIn = message;
     
   }
 
   
   login( userName: string, password: string): boolean {
-
     console.log(userName, password);
     if( this.http.post(`${this.url}/login`, {userName, password})  
     .subscribe(res => console.log('User found!')) ) {

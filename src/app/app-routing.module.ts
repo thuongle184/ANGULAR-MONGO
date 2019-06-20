@@ -23,7 +23,8 @@ const routes: Routes = [
   {
     path: 'user',
     component: ShowUserComponent
-  }
+  },
+  
 ];
 
 @NgModule({

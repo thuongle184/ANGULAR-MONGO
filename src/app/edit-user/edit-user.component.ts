@@ -14,6 +14,12 @@ export class EditUserComponent implements OnInit {
     this.createForm();
    }
   
+   emailPattern = "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$";
+  usernamePattern = "^[A-Za-z0-9]+(?:[.][A-Za-z0-9]+)*$";
+  namePattern = "^[a-zA-Z ]+([a-zA-Z ]+){2,}?$";
+  passwordPattern ="^(?=.*[a-z].)(?=.*[A-Z].)(?=.*[0-9].)[a-zA-Z0-9.]+$";
+
+
   user: any = {};
   updateUserInputForm: FormGroup;
   ngOnInit() {
@@ -26,11 +32,11 @@ export class EditUserComponent implements OnInit {
 
   createForm() {
     this.updateUserInputForm = this.fb.group({
-      username: ['', ],
-      password: ['', ],
-      firstname: ['', ],
-      lastname: ['', ],
-      gmail: ['', ]
+      username: ['', [Validators.required, Validators.minLength(2), Validators.pattern(this.usernamePattern)]],
+      password: ['', [Validators.required, Validators.minLength(6), Validators.pattern(this.passwordPattern)] ],
+      firstname: ['', [Validators.required, Validators.minLength(2), Validators.pattern(this.namePattern)]],
+      lastname: ['', [Validators.required, Validators.minLength(2), Validators.pattern(this.namePattern)]],
+      gmail: ['', [Validators.required, Validators.pattern(this.emailPattern)]]
     });
   }
 
