@@ -5,6 +5,7 @@ const express = require('express'),
     mongoose = require('mongoose')
 
     const userRoute = require('./routes/user.route');
+    const loginRoute = require('./routes/login.route');
 
     mongoose.Promise = global.Promise;
     mongoose.connect('mongodb://localhost:27017/self-learning', { useNewUrlParser: true }).then(
@@ -16,7 +17,7 @@ const express = require('express'),
     app.use(bodyParser.json());
     app.use(cors());
     app.use('/user', userRoute);
-    app.use('/login', loginRoute);
+    app.use('/userLogin', loginRoute);
     const port = process.env.PORT || 3000;
 
     const server = app.listen(port, function(){

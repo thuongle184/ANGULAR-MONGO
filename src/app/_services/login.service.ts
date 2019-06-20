@@ -6,7 +6,7 @@ import { HttpClient} from '@angular/common/http';
 })
 export class LoginService {
 
-  uri = 'http://localhost:3000/user';
+  url = 'http://localhost:3000/userLogin';
 
   constructor(private http: HttpClient) { 
     // set token if saved in local storage
@@ -26,22 +26,32 @@ export class LoginService {
   
   
   isLogged(message: boolean): boolean {
+    console.log(message);
     return this._isLoggedIn = message;
     
   }
 
   
-  login( userName: string, password: string) {
-    
-    return this.http.get(`${this.uri}/login/${userName},${password}`);
-
+  login( userName: string, password: string): boolean {
+    console.log(userName, password);
+    if( this.http.post(`${this.url}/login`, {userName, password})  
+    .subscribe(res => console.log('User found!')) ) {
+      this.token = 'I am the admin';
+      this.user_name = userName;
+      localStorage.setItem('currentUser', JSON.stringify({ username: userName, token: this.token }));
+      this.isLogged(true);  
+      return true;
+    } 
+    else {
+      
+      return false;
+    }
   }
 
   logout(): void {
-      this.token = null;
-      this.user_name = null;
-      localStorage.removeItem('currentUser');
-      this.isLogged(false);
+    this.token = null;
+    this.user_name = null;
+    localStorage.removeItem('currentUser');
+    this.isLogged(false);
   }
-
 }

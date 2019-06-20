@@ -1,23 +1,29 @@
 const express = require('express');
 const app = express();
-const userRoutes = express.Router();
+const loginRoutes = express.Router();
 
 // Require Business model in our routes module
 let User = require('../models/userModel');
 
-//  Defined login route
-loginRoutes.route('/login:uername, password').post(function(username, password, done) {
-    User.findOne({ username: username }, function(err, user) {
-      if (err) return done(err);
-      if (!user) return done(null, false, { message: 'Incorrect username.' });
-      user.comparePassword(password, function(err, isMatch) {
-        if (isMatch) {
-          return done(null, user);
-        } else {
-          return done(null, false, { message: 'Incorrect password.' });
-        }
-      });
-    });
-});
+loginRoutes.post('/login',function (req, res) {
+  let username = req.body.userName;
+  let pass = req.body.password;
+  User.findOne({username: username}, function(err, user) {
+    if (err) {
+      console.log('a', err);
+      return;
+    }
+    if(!user){
+      res.end("No account match");
+    } 
+    else if (user.username == username && user.password == pass){
+      res.json('Login completed');
+    } 
+      else {
+      console.log("Credentials wrong");
+      res.end("Credentials wrong");
+      }
+  });
+})
 
 module.exports = loginRoutes;

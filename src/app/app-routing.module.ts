@@ -17,13 +17,14 @@ const routes: Routes = [
     component: EditUserComponent
   },
   {
-    path: 'user/show',
-    component: ShowUserComponent
+    path: 'login',
+    component: LoginComponent
   },
   {
     path: 'user',
-    component: LoginComponent
-  }
+    component: ShowUserComponent
+  },
+  
 ];
 
 @NgModule({

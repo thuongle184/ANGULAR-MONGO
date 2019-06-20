@@ -28,6 +28,10 @@ export class UserService {
     return this.http.get(`${this.uri}`);
   }
 
+  getUserById(_id) {
+    return this.http.get(`${this.uri}/read/${_id}`);
+    }
+
   deleteUser(_id) {
     return this.http.get(`${this.uri}/delete/${_id}`);
   }

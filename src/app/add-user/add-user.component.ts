@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup,  FormBuilder,  Validators } from '@angular/forms';
 import { UserService } from '../_services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-user',
@@ -10,7 +11,7 @@ import { UserService } from '../_services/user.service';
 export class AddUserComponent implements OnInit {
 
   addUserInputForm: FormGroup;
-  constructor(private formBuilder: FormBuilder, private userService: UserService) {
+  constructor(private formBuilder: FormBuilder, private userService: UserService, private router: Router) {
     this.createForm();
   }
 
@@ -32,6 +33,8 @@ export class AddUserComponent implements OnInit {
 
   addUserItem(username, password, firstname, lastname, gmail) {
     this.userService.addUser(username, password, firstname, lastname, gmail);
+    this.router.navigate(['user'])
+    ;
   }
 
   ngOnInit() {
