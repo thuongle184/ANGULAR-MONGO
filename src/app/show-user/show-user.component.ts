@@ -29,6 +29,7 @@ export class ShowUserComponent implements OnInit {
 
   deleteUserItem(_id) {
       this.userService.deleteUser(_id).subscribe(res => {
+        alert('User Deleted');
         console.log('User Deleted');
         this.loadData();
       });

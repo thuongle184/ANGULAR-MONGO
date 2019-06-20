@@ -37,7 +37,7 @@ export class EditUserComponent implements OnInit {
   updateUserItem(username, password, firstname, lastname, gmail) {
     this.route.params.subscribe(params => {
        this.userService.updateUser(username, password, firstname, lastname, gmail, params['id']);
-
-      //  this.router.navigate(['user']);
+        alert("User Updated")
+       this.router.navigate(['user']);
   });}
 }

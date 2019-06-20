@@ -29,12 +29,12 @@ export class LoginComponent implements OnInit {
 
   checkLogin() {
     console.log(this.formGroupUserInput.value);
-    if (this.loginService.login(this.formGroupUserInput.value.username, this.formGroupUserInput.value.password  ) ) {
-        alert("hdjsds");
+    if (this.loginService.login(this.formGroupUserInput.value.username, this.formGroupUserInput.value.password) ) {
+      console.log(this.loginService.login(this.formGroupUserInput.value.username, this.formGroupUserInput.value.password));
+        this.router.navigate(['user']);
     } else {     
        alert ('Email or password is incorrect');
     }
-
   }
   
 }

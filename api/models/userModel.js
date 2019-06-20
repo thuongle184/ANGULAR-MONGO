@@ -12,4 +12,4 @@ let userSche = new Schema({
     collection: 'users'
 });
 
-module.exports = mongoose.model('userModel', userSche);
+module.exports = mongoose.model('userModel', userSche, 'users');
