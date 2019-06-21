@@ -71,9 +71,9 @@
 
               <div class="form-group">
                 <button (click)="addUserItem(username.value, password.value, firstname.value, lastname.value, gmail.value)"
-                    [disabled]="addUserInputForm.pristine || addUserInputForm.invalid" 
+                    [disabled]="addUserInputForm.invalid" 
                     class="btn btn-success">
-                    Add User
+                    Submit
                  </button>
             </div>
         </form>

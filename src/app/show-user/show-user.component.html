@@ -1,52 +1,26 @@
 <div>
+    <input type="button"[routerLink]="['create']" class="btn btn-success" value="Add new user"/>
+</div>
+<h2>
+  {{pageTitle}}
+</h2>
+<div>
   <table class="table table-hover">
     <thead>
       <tr>
           <th>Id</th>
           <th>User Name</th>
-          <th>Name</th>
-          <th>Email</th>
           <th colspan="3">Action</th>
       </tr>
-    </thead>
-  
+    </thead>  
     <tbody>
         <tr  *ngFor="let user of users; let i= index;">
           <td>{{i+1}}</td>
           <td>{{ user.username }}</td>
-          <td>{{ user.firstname }} {{ user.lastname }}</td>
-          <td>{{ user.gmail }}</td>
           <td><a [routerLink]="['edit', user._id]" class="btn btn-primary">Edit</a></td>
           <td><a (click)="deleteUserItem(user._id)" class="btn btn-danger">Delete</a></td>
-          <td><a (click)="open(user._id)" #ival class="btn btn-primary">Detail</a></td>
+          <td><a [routerLink]="['edit', user._id]"  class="btn btn-primary">Detail</a></td>
         </tr>
     </tbody>
   </table>
-</div>
-
-<div *ngIf="userItem">
-  <div class="modal fade" id="userDetailModal" tabindex="-1" role="dialog" aria-labelledby="detailModalLabel"
-  aria-hidden="false">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="detailModalLabel">Modal title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          {{userItem.username}}
-          {{userItem.password}}
-          {{userItem.firstname}}
-          {{userItem.lastname}}
-          
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>

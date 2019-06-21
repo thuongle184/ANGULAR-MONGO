@@ -27,6 +27,8 @@ export class EditUserComponent implements OnInit {
       this.userService.editUser(params['id']).subscribe(res => {
         this.user = res;
     });
+
+    this.checkForm(this.updateUserInputForm);
   });
   }
 
@@ -40,10 +42,28 @@ export class EditUserComponent implements OnInit {
     });
   }
 
-  updateUserItem(username, password, firstname, lastname, gmail) {
-    this.route.params.subscribe(params => {
-       this.userService.updateUser(username, password, firstname, lastname, gmail, params['id']);
-        alert("User Updated")
-       this.router.navigate(['user']);
-  });}
+  checkForm(tempForm: FormGroup) {
+    tempForm.disable();
+  }
+  public buttonTitle: string = 'Update';
+  public pageTitle: string = 'Use Detailed Information';
+
+  updateUserItem(username, password, firstname, lastname, gmail){
+    
+    if (this.buttonTitle=="Save") {
+      this.buttonTitle = "Update";
+      this.route.params.subscribe(params => {
+        this.userService.updateUser(username, password, firstname, lastname, gmail, params['id']);
+         alert("User Updated")
+        this.router.navigate(['user']);
+        console.log('2', this.buttonTitle);
+   });
+    } 
+    else {
+      this.buttonTitle = "Save";
+      console.log('3', this.buttonTitle); 
+      this.updateUserInputForm.enable();
+    }
+  }
+
 }

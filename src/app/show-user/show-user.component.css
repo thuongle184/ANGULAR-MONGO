@@ -1,4 +1,4 @@
-h1{
+h1, h2{
   text-align: center;
   color: green;
 }
@@ -6,7 +6,6 @@ h1{
 table, th , td  {
   border: 1px solid grey;
   border-collapse: collapse;
-  padding: 16px;
   text-align: center;
 }
 table tr:nth-child(odd) {
@@ -17,7 +16,7 @@ table tr:nth-child(even) {
 }
 
 div{
-  padding: 30px;
+  padding: 20px;
 }
 
 ::placeholder{

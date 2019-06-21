@@ -26,27 +26,30 @@ export class LoginService {
   
   
   isLogged(message: boolean): boolean {
-    console.log(message);
+    //console.log(message);
     return this._isLoggedIn = message;
     
   }
 
-  
+   flag : boolean = false ;
   login( userName: string, password: string): boolean {
     console.log(userName, password);
-    if( this.http.post(`${this.url}/login`, {userName, password})  
-    .subscribe(res => console.log('User found!')) ) {
-      this.token = 'I am the admin';
-      this.user_name = userName;
-      localStorage.setItem('currentUser', JSON.stringify({ username: userName, token: this.token }));
-      this.isLogged(true);  
-      return true;
-    } 
-    else {
-      
-      return false;
-    }
-  }
+    this.http.post(`${this.url}/login`, {userName, password})  
+    .subscribe(res =>  {
+      console.log(res)
+      if(res == true) {
+        this.token = 'I am the admin';
+        this.user_name = userName;
+        localStorage.setItem('currentUser', JSON.stringify({ username: userName, token: this.token }));
+        this.isLogged(true);  
+        return this.flag = true;
+      } 
+      else if(res === false){    
+        return this.flag = false;
+      }
+    });
+    return this.flag;
+  } 
 
   logout(): void {
     this.token = null;
