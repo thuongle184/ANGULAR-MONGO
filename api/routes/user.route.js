@@ -6,14 +6,28 @@ let User = require('../models/userModel');
 
 // Defined store route
 userRoutes.route('/add').post(function (req, res) {
-  let user = new User(req.body);
-  user.save()
-    .then(user => {
-      res.status(200).json({'user': 'user added successfully'});
-    })
-    .catch(err => {
-    res.status(400).send("unable to save to database");
-    });
+  userNameCheck = req.body.username;
+  console.log('3', userNameCheck);
+
+  User.findOne({username: userNameCheck}, function(err, user) {
+    if (err) {
+      console.log('a', err);
+      return;
+    }
+    if(!user){
+      console.log('2', user)
+      let userAdd = new User(req.body);
+      console.log('1', userAdd);
+      userAdd.save()
+      .then(userAdd => {
+        res.status(200).json(true);
+      })  
+    } 
+    // else
+    // {
+    //   res.json(false);
+    // }
+  });
 });
 
 // Defined get data(index or listing) route

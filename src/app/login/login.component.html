@@ -12,8 +12,18 @@
             <label>
               Username:
             </label>
-            <input  style="width: 80%" class="form-control" placeholder="Username ...." type="text" formControlName="username" value="username" ng-model="user.username" required/>
+            <input  style="width: 80%" class="form-control" #username placeholder="Username ...." type="text" formControlName="username" value="username" required/>
           </div>
+          <label>
+            <div *ngIf="formGroupUserInput.controls['username'].invalid && (formGroupUserInput.controls['username'].dirty || formGroupUserInput.controls['username'].touched)" class="alert alert-danger">
+              <div *ngIf="formGroupUserInput.controls['username'].errors.required">
+                User Name is required.
+              </div>
+              <div *ngIf="formGroupUserInput.controls['username'].errors.pattern">
+                Invalid Username. Username should have both letters and numbers, without special characters
+              </div>
+            </div>
+          </label>
 
           &nbsp;&nbsp;&nbsp;&nbsp;
 
@@ -21,14 +31,25 @@
             <label>
               Password:
             </label>
-            <input style="width: 80%" class="form-control" placeholder="Password ..." type="text" formControlName="password" value="password" ng-model="user.password" required minlength="6"/>
+            <input style="width: 80%" class="form-control" placeholder="Password ..." type="password" formControlName="password" value="password"  #password required minlength="6"/>
           </div>
+          &nbsp; &nbsp; &nbsp; &nbsp;
+          <label>
+            <div *ngIf="formGroupUserInput.controls['password'].invalid && (formGroupUserInput.controls['password'].dirty || formGroupUserInput.controls['password'].touched)" class="alert alert-danger">
+                <div *ngIf="formGroupUserInput.controls['password'].errors.required">
+                  Password is required.
+                </div>
+                <div *ngIf="formGroupUserInput.controls['password'].errors.pattern">
+                  Invalid Password. Password should contain lowercaseLetter, uppercaseLetter and number
+                </div>
+            </div>
+          </label>
 
           &nbsp;&nbsp;&nbsp;&nbsp;
           
           <div class="action">
             <button type="submit" [disabled]="!formGroupUserInput.valid" class="btn btn-success">Login</button> &nbsp; 
-            <!-- <label> Don't have any account?<a [routerLink]="['create']" routerLinkActive="active" class="btn btn-link">Register</a> </label>   -->
+            <label> Don't have any account?<a [routerLink]="['/user/create']" routerLinkActive="active" class="btn btn-link">Register</a> </label>  
           </div>    
         </form>     
   </div>

@@ -32,9 +32,14 @@ export class AddUserComponent implements OnInit {
   }
 
   addUserItem(username, password, firstname, lastname, gmail) {
-    this.userService.addUser(username, password, firstname, lastname, gmail);
-    this.router.navigate(['user'])
-    ;
+    console.log(this.userService.addUser(username, password, firstname, lastname, gmail))
+    if(this.userService.addUser(username, password, firstname, lastname, gmail) == true) {
+      alert("User added!");
+      this.router.navigate(['user']);
+    } else {
+      alert('Username exists!')
+    }
+    
   }
 
   ngOnInit() {

@@ -10,7 +10,7 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  addUser(username, password, firstname, lastname, gmail) {
+  addUser(username, password, firstname, lastname, gmail):any {
     const newUser = {
       username: username,
       password: password,
@@ -21,7 +21,11 @@ export class UserService {
 
     console.log(newUser);
     this.http.post(`${this.uri}/add`, newUser)
-        .subscribe(res => console.log('User added'));
+        .subscribe(res => {
+          return res;
+        });
+
+
   }
 
   getUsers() {

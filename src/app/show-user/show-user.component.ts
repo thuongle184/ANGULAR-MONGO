@@ -19,6 +19,7 @@ export class ShowUserComponent implements OnInit {
   users: user[];
   userItem : user;
 
+  public pageTitle: String = "List of users"
   loadData() {
     console.log('Load data from database');
     this.userService.getUsers().subscribe((data: user[]) => {
@@ -34,11 +35,6 @@ export class ShowUserComponent implements OnInit {
         this.loadData();
       });
     }
-
-  open(_id){
-    this.userService.getUserById(_id).subscribe((userDetail: user) => {
-      this.userItem = userDetail;
-      console.log(this.userItem);
-  });;
-  }
 }
+
+

@@ -22,20 +22,26 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  usernamePattern = "^[A-Za-z0-9]+(?:[.][A-Za-z0-9]+)*$";
+  passwordPattern ="^(?=.*[a-z].)(?=.*[A-Z].)(?=.*[0-9].)[a-zA-Z0-9.]+$";
+
   formGroupUserInput = new FormGroup({ //variables name: the same as in array
-    username: new FormControl('' , Validators.required),
-    password: new FormControl('', Validators.required)
+    username: new FormControl('' , [Validators.required, Validators.pattern(this.usernamePattern)]),
+    password: new FormControl('', [Validators.required, Validators.pattern(this.passwordPattern)])
   });
 
   message: string = "";
 
+  
+
   checkLogin() {
     console.log(this.formGroupUserInput.value);
-    if (!this.loginService.login(this.formGroupUserInput.value.username, this.formGroupUserInput.value.password)) {
-      
-      alert ('Email or password is incorrect');
-    } else {     
+
+    if (this.loginService.login(this.formGroupUserInput.value.username, this.formGroupUserInput.value.password)) {   
       this.router.navigate(['user']);
+    } 
+    else if (!this.loginService.login(this.formGroupUserInput.value.username, this.formGroupUserInput.value.password)){        
+      alert ('Email or password is incorrect');
       
     }
   }

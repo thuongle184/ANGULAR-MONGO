@@ -1,14 +1,14 @@
 <h2>
-  Edit User Information!
+  {{pageTitle}}
 </h2>
 <div class="card">
   <div class="card-body">
     <form [formGroup]="updateUserInputForm" novalidate>
       <div class="form-group">
         <label class="col-md-4">User Name</label>
-        <input type="text" class="form-control" formControlName="username" #username value = "{{user.username}}" />
+        <input [readOnly]="Update" type="text" class="form-control" formControlName="username" #username value = "{{user.username}}" />
       </div>
-      <div *ngIf="updateUserInputForm.controls['username'].invalid && (updateUserInputForm.controls['username'].dirty || updateUserInputForm.controls['username'].touched)" class="alert alert-danger">
+      <div *ngIf="updateUserInputForm.controls['username'].invalid && (updateUserInputForm.controls['username'].dirty)" class="alert alert-danger">
         <div *ngIf="updateUserInputForm.controls['username'].errors.required">
           User Name is required.
         </div>
@@ -21,7 +21,7 @@
         <label class="col-md-4">Password</label>
         <input type="password" class="form-control" formControlName="password" #password value= "{{user.password}}" />
       </div>
-      <div *ngIf="updateUserInputForm.controls['password'].invalid && (updateUserInputForm.controls['password'].dirty || updateUserInputForm.controls['password'].touched)" class="alert alert-danger">
+      <div *ngIf="updateUserInputForm.controls['password'].invalid && (updateUserInputForm.controls['password'].dirty)" class="alert alert-danger">
         <div *ngIf="updateUserInputForm.controls['password'].errors.required">
           Password is required.
         </div>
@@ -34,7 +34,7 @@
         <label class="col-md-4">Firstname </label>
         <input type="text" class="form-control" formControlName="firstname" #firstname value = "{{user.firstname}}" />
       </div>
-      <div *ngIf="updateUserInputForm.controls['firstname'].invalid && (updateUserInputForm.controls['firstname'].dirty || updateUserInputForm.controls['firstname'].touched)" class="alert alert-danger">
+      <div *ngIf="updateUserInputForm.controls['firstname'].invalid && (updateUserInputForm.controls['firstname'].dirty)" class="alert alert-danger">
         <div *ngIf="updateUserInputForm.controls['firstname'].errors.required">
           Firstname is required.
         </div>
@@ -47,7 +47,7 @@
         <label class="col-md-4">Lastname </label>
         <input type="text" class="form-control" formControlName="lastname" #lastname value = "{{user.lastname}}" />
       </div>
-      <div *ngIf="updateUserInputForm.controls['lastname'].invalid && (updateUserInputForm.controls['lastname'].dirty || updateUserInputForm.controls['lastname'].touched)" class="alert alert-danger">
+      <div *ngIf="updateUserInputForm.controls['lastname'].invalid && (updateUserInputForm.controls['lastname'].dirty)" class="alert alert-danger">
         <div *ngIf="updateUserInputForm.controls['lastname'].errors.required">
           Lastname is required.
         </div>
@@ -60,7 +60,7 @@
         <label class="col-md-4">Email </label>
         <input type="text" class="form-control" formControlName="gmail" #gmail value = "{{user.gmail}}" />
       </div>
-      <div *ngIf="updateUserInputForm.controls['gmail'].invalid && (updateUserInputForm.controls['gmail'].dirty || updateUserInputForm.controls['gmail'].touched)" class="alert alert-danger">
+      <div *ngIf="updateUserInputForm.controls['gmail'].invalid && (updateUserInputForm.controls['gmail'].dirty)" class="alert alert-danger">
         <div *ngIf="updateUserInputForm.controls['gmail'].errors.required">
           Email is required.
         </div>
@@ -70,9 +70,9 @@
       </div>
       
       <div class="form-group">
-        <button (click)="updateUserItem(username.value, password.value, firstname.value, lastname.value, gmail.value)"
-        [disabled]="updateUserInputForm.invalid" 
-        class="btn btn-primary">Update User</button>
+        <input type="button" value="{{ buttonTitle }}" (click)="updateUserItem(username.value, password.value, firstname.value, lastname.value, gmail.value)"
+       
+        class="btn btn-success"/>
       </div>
     </form>
   </div>
